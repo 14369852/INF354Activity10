@@ -21,8 +21,7 @@ import random
 ranNum = random.randint(25,50)
 print ("2. The Random number is: ", ranNum)
 
-import math
-dividNum = math.floor(ranNum/count)
+dividNum = ranNum//count
 print ("3. The number of strings to be generated is: ", dividNum)
 
 
@@ -44,18 +43,49 @@ for st in range (0, dividNum):
     stCount += 1
     print (stCount, " - ", word, "(", letters,")")
 print  ("=========================")
-
-vAmount = []
+vList = []
 vowels = ["a", "e", "i", "o", "u"]
+# comList = [str, int]
 for x in stringList:
     vCount = 0
-    for let in x:
+    for let in str(x):
         for v in vowels:
             if let == v:
                 vCount+=1
                 break
-    vAmount.append(vCount)
+    vList.append(vCount)
+    # print(vCount)
+    # comList.append("wrd":x, "vwl":vCount)
+for i in range(len(vList)-1):
+    for j in range (len(vList) - int(i) - 1):
+        if vList[j] > vList [j+1]:
+            temp = vList[j]
+            vList[j] = vList[j+1]
+            vList[j+1] = temp
+            temp2 = stringList[j]
+            stringList[j] = stringList[j+1]
+            stringList[j+1] = temp2
 
-zipped = zip(VAmount, stringList)
-# z =[x for_ x in sorted(zipped)]
-# print(z)
+
+print("5. Sorted list")
+print  ("=========================")
+
+lCount = 1
+for p in range(len(stringList)):
+    print(lCount, " - ", stringList[p],"(vowels: ", vList[p] ,")")
+    lCount+=1
+
+print  ("=========================")
+
+def reverseList():
+    lCount = 0
+    print("5. Reverse Sorted list")
+    print  ("=========================")
+    stringList.reverse()
+    vList.reverse()
+    for p in range(len(stringList)):
+        print(lCount, " - ", stringList[p],"(vowels: ", vList[p] ,")")
+        lCount+=1
+    print  ("=========================")
+
+reverseList()
